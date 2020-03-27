@@ -9,3 +9,9 @@
 {
   <p>@Html.ActionLink($"{@flavor.Name}", "Details", null, new {id = flavor.FlavorId}, new {@class = "btn btn-warning"})</p>
 }
+
+@if (User.Identity.IsAuthenticated)
+{
+  <hr>
+  <p>@Html.ActionLink($"Add a new flavor", "Create", null, null, new {@class = "btn btn-warning"})</p>
+}
