@@ -1,0 +1,11 @@
+@{Layout="_Layout";}
+
+@model TreatShop.Models.Flavor
+@using TreatShop.Models
+
+<h1>Flavors of the treats in house</h1>
+
+@foreach(Flavor flavor in Model)
+{
+  <p>@Html.DisplayFor(flavor.Name)</p>
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+  <title>Treat Shop</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <a class="navbar-brand" href="/">Treat Shop</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        @Html.ActionLink("Home", "Index", "Home", null, new { @class="nav-item nav-link" } )
+        @Html.ActionLink("Flavores", "Index", "Flavors", null, new { @class="nav-item nav-link" } )
+        @Html.ActionLink("Treats", "Index", "Treats", null, new { @class="nav-item nav-link" } )
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    @RenderBody()
+  </div>
+</body>
+</html>
