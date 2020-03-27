@@ -56,7 +56,8 @@ namespace TreatShop.Controllers
     }
 
     // [Authorize]
-    public async Task<ActionResult> Edit(int id)
+    // public async Task<ActionResult> Edit(int id)
+    public ActionResult Edit(int id)
     {
       // var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       // var currentUser = await _userManager.FindByIdAsync(userId);
@@ -70,8 +71,8 @@ namespace TreatShop.Controllers
       //   return View(thisFlavor);
       // }
 
-      var thisFlavor = _db.Flavor.FirstOrDefault(flavor => flavor.FlavorId == id);
-      return ViewModels();
+      var thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
+      return View(thisFlavor);
     }
 
     [HttpPost]
