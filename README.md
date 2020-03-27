@@ -15,7 +15,7 @@ ASP.NET core MVC application using Entity Framework Core and MySQL for a treat s
 * user is redirected to log in page when submitting registration form
 user is redirected to welcome page after registtration is complete
 * user now sees create links when viewing flavors and treats
-user
+* user now sees edit and delete links when on details pages
 
 
 ## Getting Started
