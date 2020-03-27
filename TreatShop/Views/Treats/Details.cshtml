@@ -1,0 +1,9 @@
+@{Layout="_Layout";}
+
+@model TreatShop.Models.Treat
+<h1>@Model.Name's flavors</h1>
+
+@foreach(var join in Model.Flavors)
+{
+  <p>@join.Flavor.Name</p>
+}
