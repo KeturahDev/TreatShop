@@ -26,12 +26,12 @@ namespace TreatShop.Controllers
       return View(_db.Flavors.ToList());
     }
     
+    [Authorize]
     public ActionResult Create()
     {
       return View();
     }
 
-    [Authorize]
     [HttpPost]
     public async Task<ActionResult> Create(Flavor flavor)
     {
@@ -51,7 +51,7 @@ namespace TreatShop.Controllers
         .FirstOrDefault(flavor => flavor.FlavorId == id);
 
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      ViewBag.IsCurrent = userId == thisFlavor.User.Id;
+      // ViewBag.IsCurrentUser = userId == thisFlavor.User.Id; //doesnt have access to user Id ? line doesnt work
       return View(thisFlavor);
     }
 
