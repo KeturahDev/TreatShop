@@ -1,0 +1,11 @@
+@{Layout="_Layout";}
+
+@model List<TreatShop.Models.Treat>
+@using TreatShop.Models
+
+<h1>Our Treats</h1>
+
+@foreach(Treat treat in Model)
+{
+  <p>@treat.Name</p>
+}
