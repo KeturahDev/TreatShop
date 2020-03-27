@@ -50,15 +50,37 @@ namespace TreatShop.Controllers
         .ThenInclude(join => join.Treat)
         .FirstOrDefault(flavor => flavor.FlavorId == id);
 
-      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      // var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       // ViewBag.IsCurrentUser = userId == thisFlavor.User.Id; //doesnt have access to user Id ? line doesnt work
       return View(thisFlavor);
     }
 
+    // [Authorize]
+    public async Task<ActionResult> Edit(int id)
+    {
+      // var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      // var currentUser = await _userManager.FindByIdAsync(userId);
+      // Flavor thisFlavor = _db.Flavors.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(flavor => flavor.FlavorId == id);
+      // if (thisFlavor == null)
+      // {
+      //   return RedirectToAction("Details", new {id = id});
+      // }
+      // else
+      // {
+      //   return View(thisFlavor);
+      // }
 
-    // public ActionResult Edit(int id)
-    // {
-      
-    // }
+      var thisFlavor = _db.Flavor.FirstOrDefault(flavor => flavor.FlavorId == id);
+      return ViewModels();
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Flavor flavor)
+    {
+      _db.Entry(flavor).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
   }
 }
