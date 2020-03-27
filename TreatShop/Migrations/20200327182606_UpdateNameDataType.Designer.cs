@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TreatShop.Models;
 
 namespace TreatShop.Migrations
 {
     [DbContext(typeof(TreatShopContext))]
-    partial class TreatShopContextModelSnapshot : ModelSnapshot
+    [Migration("20200327182606_UpdateNameDataType")]
+    partial class UpdateNameDataType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

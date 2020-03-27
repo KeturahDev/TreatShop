@@ -9,7 +9,7 @@ namespace TreatShop.Models
       this.Flavors = new HashSet<TreatFlavor>();
     }
     public int TreatId { get;set; }
-    public int Name { get;set; }
+    public string Name { get;set; }
     public ICollection<TreatFlavor> Flavors { get;set; }
   }
 }

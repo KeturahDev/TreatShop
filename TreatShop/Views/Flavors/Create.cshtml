@@ -1,0 +1,13 @@
+@{Layout="_Layout";}
+
+@model TreatShop.Models.Flavor
+
+<h1>Add a new flavor</h1>
+
+@using (@Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Name)
+  @Html.TextBoxFor(model => model.Name)
+
+  <input type="submit" value="Add new item" class="btn btn-default" />
+}
