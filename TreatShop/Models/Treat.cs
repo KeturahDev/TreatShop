@@ -10,6 +10,8 @@ namespace TreatShop.Models
     }
     public int TreatId { get;set; }
     public string Name { get;set; }
+    public virtual ApplicationUser User { get; set; }
+
     public ICollection<TreatFlavor> Flavors { get;set; }
   }
 }

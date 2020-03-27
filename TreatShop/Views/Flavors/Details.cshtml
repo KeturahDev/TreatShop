@@ -8,3 +8,9 @@
 {
   <p>@join.Treat.Name</p>
 }
+
+@if (User.Identity.IsAuthenticated && ViewBag.IsCurrentUser)
+{
+  <hr>
+  <p>@Html.ActionLink($"Add a new flavor", "Create", null, null, new {@class = "btn btn-warning"})</p>
+}
