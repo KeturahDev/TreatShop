@@ -14,7 +14,7 @@ namespace TreatShop.Models
         .AddJsonFile("appsettings.json")
         .Build();
 
-      var builder = new DbContextOptionsBuilder<ToDoListContext>();
+      var builder = new DbContextOptionsBuilder<TreatShopContext>();
       var connectionString = configuration.GetConnectionString("DefaultConnection");
 
       builder.UseMySql(connectionString);
