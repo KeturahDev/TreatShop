@@ -1,4 +1,4 @@
-# FoodStore
+# TreatShop
 #### By Keturah Howard _March 27th 2020_ 
 
 ## Description
@@ -44,9 +44,10 @@ Download the .zip file and extract all files into directory of your choice OR cl
 
  #### Setup Database
 
-4. Run the following commands in MySQL to setup this project Database
+4. Run the following commands in terminal on root level to setup this project Database
     ```
-    
+    dotnet ef migrations add Initial
+    dotnet ef update database
 
     ```
 5. Compile and Run code:
@@ -58,16 +59,6 @@ Download the .zip file and extract all files into directory of your choice OR cl
     ```
     start http://localhost:5000
     ```
-
-## Application Design
-
-### Routing Flowchart
-
-
-
-### MySQL Database Structure
-
-
 
 ## Technologies Used
 
