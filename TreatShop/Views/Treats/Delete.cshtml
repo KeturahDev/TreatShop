@@ -1,0 +1,14 @@
+@{Layout="_Layout";}
+
+@model TreatShop.Models.Treat
+
+<h1>Deleting @Model.Name</h1>
+
+<p>Ah! dont delete me!</p>
+
+@using (@Html.BeginForm())
+{
+  <input type="submit" value="Do it" />
+}
+
+<p>@Html.ActionLink($"Ah, fine", "Details", null, new {id = @Model.TreatId}, new {@class = "btn btn-warning"})</p>
