@@ -1,0 +1,15 @@
+@{Layout="_Layout";}
+@model TreatShop.Models.Treat
+<h1>Add a flavor to @Model.Name</h1>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.TreatId);
+  @Html.HiddenFor(model => model.Name);
+
+  @Html.Label("Select Treat")
+  @Html.DropDownList("FlavorId")
+  <input type="submit" value="mmmm yes"/>
+}
+
+<p>@Html.ActionLink($"nevermind", "Details", null, new {id = @Model.TreatId}, new {@class = "btn btn-warning"})</p>
