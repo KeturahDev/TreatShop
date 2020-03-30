@@ -3,12 +3,12 @@
 @using TreatShop.Models
 @model TreatShop.Models.Flavor
 
-<h1>Edit @Model.Name</h1>
+<h1>Edit Name of: @Html.DisplayFor(model => model.Name)</h1>
 
 @using (@Html.BeginForm())
 {
   @Html.HiddenFor(model => model.FlavorId)
-  @Html.DisplayFor(model => model.Name)
+  @Html.DisplayNameFor(model => model.Name)
   @Html.TextBoxFor(model => model.Name)
 
   <input type="submit" value="Submit" class="btn btn-default" />
