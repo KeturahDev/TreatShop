@@ -11,11 +11,11 @@ ASP.NET core MVC application using Entity Framework Core and MySQL for a treat s
 * user can select to look at treats via "treats" or "falvors"
 * user browsing flavors will see a list of flavors, clicking on a flavor will go to a details page listing all the available treats 
 * users browsing treats will see a list of treats, clicking on a treat will display to a details page with all the flavors of that treat
-* user enteres an email and password when registering for an account
-* user is redirected to log in page when submitting registration form
-user is redirected to welcome page after registtration is complete
-* user now sees create links when viewing flavors and treats
-* user now sees edit and delete links when on details pages
+* user enteres an email and password when registering for an account to become a member
+* member is redirected to log in page when submitting registration form
+* member is redirected to welcome page after log in is complete
+* member can see create links when viewing flavors and treats
+* member sees edit and delete links when on details pages
 
 
 ## Getting Started
