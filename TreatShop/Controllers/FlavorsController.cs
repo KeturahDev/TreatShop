@@ -62,20 +62,20 @@ namespace TreatShop.Controllers
       return RedirectToAction("Index");
     }
 
-    // public ActionResult Delete(int id)
-    // {
-    //   Flavor flavorToDelete = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
-    //   return View(flavorToDelete);
-    // }
+    public ActionResult Delete(int id)
+    {
+      Flavor flavorToDelete = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
+      return View(flavorToDelete);
+    }
 
-    // [HttpPost ActionName("Delete")]
-    // public ActionResult DeleteConfirm(int id)
-    // {
-    //   Flavor flavorToDelete = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
-    //   _db.Flavors.Remove(flavorToDelete);
-    //   _db.SaveChanges();
-    //   return View("Delete");
-    // }
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirm(int id)
+    {
+      Flavor flavorToDelete = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
+      _db.Flavors.Remove(flavorToDelete);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
 
