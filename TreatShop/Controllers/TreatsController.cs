@@ -46,5 +46,43 @@ namespace TreatShop.Controllers
         .FirstOrDefault(treat => treat.TreatId == id);
       return View(thisTreat);
     }
+
+    public ActionResult Edit(int id)
+    {
+      Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+      // ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
+      return View(thisTreat);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Treat treat)
+    {
+      // if(FlavorId != 0)
+      // {
+      //   _db.TreatFlavor.Add(new TreatFlavor {FlavorId = FlavorId, TreatId = treat.TreatId});
+      // }
+      _db.Entry(treat).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Details", new {id = treat.TreatId});
+    }
+
+    public ActionResult AddFlavor(int id)
+    {
+      Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+      ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
+      return View(thisTreat);
+    }
+
+    [HttpPost]
+    public ActionResult AddFlavor(Treat treat, int FlavorId)
+    {
+      if(FlavorId != 0)
+      {
+        _db.TreatFlavor.Add(new TreatFlavor {FlavorId = FlavorId, TreatId = treat.TreatId});
+      }
+      _db.Entry(treat).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Details", new {id = treat.TreatId});
+    }
   }
 }

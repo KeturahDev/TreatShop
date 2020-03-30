@@ -7,3 +7,13 @@
 {
   <p>@join.Flavor.Name</p>
 }
+
+@if (User.Identity.IsAuthenticated)
+{
+  <hr>
+  <div class="row">
+  <p>@Html.ActionLink($"Remove {Model.Name}", "Delete", null, new {id = @Model.TreatId}, new {@class = "btn btn-warning "})</p>
+  <p>@Html.ActionLink($"Edit {Model.Name}", "Edit", null, new {id = @Model.TreatId}, new {@class = "btn btn-warning"})</p>
+  <p>@Html.ActionLink($"Add a flavor!", "AddFlavor", null, new {id = @Model.TreatId}, new {@class = "btn btn-warning"})</p>
+  </div>
+}
