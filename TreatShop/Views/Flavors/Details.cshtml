@@ -15,13 +15,9 @@ else
   }
 }
 
-@* if (User.Identity.IsAuthenticated && ViewBag.IsCurrentUser) *@
-@if (User.Identity.IsAuthenticated)
-{
   <hr>
   <div class="row">
   <p>@Html.ActionLink($"Remove {Model.Name}", "Delete", null, new {id = @Model.FlavorId}, new {@class = "btn btn-warning "})</p>
   <p>@Html.ActionLink($"Edit {Model.Name}", "Edit", null, new {id = @Model.FlavorId}, new {@class = "btn btn-warning"})</p>
   <p>@Html.ActionLink($"Add a treat!", "AddTreat", null, new {id = @Model.FlavorId}, new {@class = "btn btn-warning"})</p>
   </div>
-}

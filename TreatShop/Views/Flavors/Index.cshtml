@@ -16,8 +16,5 @@ else
   }
 }
 
-@if (User.Identity.IsAuthenticated)
-{
   <hr>
   <p>@Html.ActionLink($"Add a new flavor", "Create", null, null, new {@class = "btn btn-warning"})</p>
-}
