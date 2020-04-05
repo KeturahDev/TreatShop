@@ -3,10 +3,16 @@
 @model TreatShop.Models.Flavor
 
 <h1>Treats listed under @Model.Name</h1>
-
-@foreach(var join in Model.Treats)
+if(join.Treats <= 0)
 {
-  <p>@join.Treat.Name</p>
+  <p>There are currently no treats with this flavor</p>
+}
+else
+{
+  @foreach(var join in Model.Treats)
+  {
+    <p>@join.Treat.Name</p>
+  }
 }
 
 @* if (User.Identity.IsAuthenticated && ViewBag.IsCurrentUser) *@
