@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using TreatShop.Models;
+using System;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -11,7 +12,6 @@ using System.Security.Claims;
 
 namespace TreatShop.Controllers
 {
-  [Authorize]
   public class TreatsController : Controller
   {
     private readonly TreatShopContext _db;
@@ -57,13 +57,23 @@ namespace TreatShop.Controllers
         .ThenInclude(join => join.Flavor)
         .FirstOrDefault(treat => treat.TreatId == id);
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      ViewBag.IsCurrentUser = userId = thisTreat.User.Id;
+      Console.WriteLine("hey, its1" + userId);
+      Console.WriteLine("hey, its2" + thisTreat.User.Id);
+      ViewBag.IsCurrentUser = userId == thisTreat.User.Id;
       return View(thisTreat);
     }
 
-    public ActionResult Edit(int id)
+    [Authorize]
+    public async Task<ActionResult> Edit(int id)
     {
-      Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      Treat thisTreat = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(treat => treat.TreatId == id);
+      if(thisTreat == null)
+      {
+        return RedirectToAction("Details", new {id = id});
+      }
+      ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
       return View(thisTreat);
     }
 

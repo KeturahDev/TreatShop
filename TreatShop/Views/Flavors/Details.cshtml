@@ -3,7 +3,7 @@
 @model TreatShop.Models.Flavor
 
 <h1>Treats listed under @Model.Name</h1>
-if(join.Treats <= 0)
+@if(Model.Treats.Count <= 0)
 {
   <p>There are currently no treats with this flavor</p>
 }
