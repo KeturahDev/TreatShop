@@ -17,9 +17,10 @@ namespace TreatShop.Controllers
     private readonly TreatShopContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
 
-    public TreatsController(TreatShopContext db)
+    public TreatsController(TreatShopContext db, UserManager<ApplicationUser> userManager)
     {
       _db = db;
+      _userManager = userManager;
     }
 
     public ActionResult Index()
@@ -27,9 +28,9 @@ namespace TreatShop.Controllers
       return View(_db.Treats.ToList());
     }
 
+    [Authorize] 
     public ActionResult Create()
     {
-      
       ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
       return View();
     }
@@ -55,6 +56,8 @@ namespace TreatShop.Controllers
         .Include(treat => treat.Flavors)
         .ThenInclude(join => join.Flavor)
         .FirstOrDefault(treat => treat.TreatId == id);
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      ViewBag.IsCurrentUser = userId = thisTreat.User.Id;
       return View(thisTreat);
     }
 

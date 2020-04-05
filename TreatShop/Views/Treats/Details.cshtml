@@ -8,7 +8,7 @@
   <p>@join.Flavor.Name</p>
 }
 
-@if (User.Identity.IsAuthenticated)
+@if (User.Identity.IsAuthenticated && ViewBag.isCurrentUser)
 {
   <hr>
   <div class="row">
