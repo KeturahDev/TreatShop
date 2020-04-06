@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Security.Claims;
 
+using System.Collections.Generic;
+
+
 namespace TreatShop.Controllers
 {
   public class TreatsController : Controller
@@ -44,7 +47,7 @@ namespace TreatShop.Controllers
       _db.Treats.Add(treat);
       if (FlavorId != 0)
       {
-        _db.TreatFlavor.Add(new TreatFlavor {FlavorId = FlavorId, TreatId = treat.TreatId});
+        _db.TreatFlavor.Add(new TreatFlavor() {FlavorId = FlavorId, TreatId = treat.TreatId});
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -58,7 +61,7 @@ namespace TreatShop.Controllers
         .FirstOrDefault(treat => treat.TreatId == id);
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       Console.WriteLine("hey, its1" + userId);
-      Console.WriteLine("hey, its2" + thisTreat.User.Id);
+      // Console.WriteLine("hey, its2" + thisTreat.User.Id);
       ViewBag.IsCurrentUser = userId == thisTreat.User.Id;
       return View(thisTreat);
     }
