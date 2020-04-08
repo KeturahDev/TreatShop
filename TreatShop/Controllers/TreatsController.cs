@@ -63,9 +63,7 @@ namespace TreatShop.Controllers
         .Include(treat => treat.User)
         .FirstOrDefault(treat => treat.TreatId == id);
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      Console.WriteLine("userId:" + userId);
-      Console.WriteLine("thisTreat's userId?:"+ thisTreat.User.Id);
-      ViewBag.IsCurrentUser = userId;
+      // ViewBag.IsCurrentUser = userId;
       ViewBag.IsCurrentUser = userId != null ? userId == thisTreat.User.Id : false;
       return View(thisTreat);
     }
@@ -113,17 +111,6 @@ namespace TreatShop.Controllers
       _db.Entry(treat).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Details", new {id = treat.TreatId});
-    }
-
-    [HttpPost]
-    public ActionResult DeleteFlavor(int FlavorId, int id)
-    {
-      var thisCombo = _db.TreatFlavor.FirstOrDefault(tf => tf.FlavorId == FlavorId && tf.TreatId == id);
-      _db.TreatFlavor.Remove(thisCombo);
-      var thisTreat = _db.Treats.FirstOrDefault(t => t.TreatId == id);
-      _db.Entry(thisTreat).State = EntityState.Modified;
-      _db.SaveChanges();
-      return RedirectToAction("Details", null, new {id = id});
     }
 
     public ActionResult Delete(int id)
