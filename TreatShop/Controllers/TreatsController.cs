@@ -44,8 +44,6 @@ namespace TreatShop.Controllers
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
       treat.User = currentUser;
-      Console.WriteLine("treat.User?:" + treat.User); //works
-      Console.WriteLine("treat.User.Id?:" + treat.User.Id); //works
       _db.Treats.Add(treat);
       if (FlavorId != 0)
       {
@@ -63,7 +61,6 @@ namespace TreatShop.Controllers
         .Include(treat => treat.User)
         .FirstOrDefault(treat => treat.TreatId == id);
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      // ViewBag.IsCurrentUser = userId;
       ViewBag.IsCurrentUser = userId != null ? userId == thisTreat.User.Id : false;
       return View(thisTreat);
     }
