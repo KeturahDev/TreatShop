@@ -6,6 +6,16 @@
 @foreach(var join in Model.Flavors)
 {
   <p>@join.Flavor.Name</p>
+    @if (User.Identity.IsAuthenticated && ViewBag.isCurrentUser)
+    {       
+      @using (Html.BeginForm("DeleteFlavor"))
+      {
+        <input type="hidden" name="FlavorId" value="@join.FlavorId">
+        <input type="hidden" name="id" value="@Model.TreatId">
+        <input type="submit" value="x" class="btn btn-danger">
+      }
+    }
+  <hr>
 }
 
 @if (User.Identity.IsAuthenticated && ViewBag.isCurrentUser)
