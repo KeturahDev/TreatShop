@@ -44,6 +44,8 @@ namespace TreatShop.Controllers
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
       treat.User = currentUser;
+      Console.WriteLine("treat.User?:" + treat.User); //works
+      Console.WriteLine("treat.User.Id?:" + treat.User.Id); //works
       _db.Treats.Add(treat);
       if (FlavorId != 0)
       {
@@ -55,14 +57,16 @@ namespace TreatShop.Controllers
 
     public ActionResult Details(int id)
     {
-      Treat thisTreat = _db.Treats
+      var thisTreat = _db.Treats
         .Include(treat => treat.Flavors)
         .ThenInclude(join => join.Flavor)
+        .Include(treat => treat.User)
         .FirstOrDefault(treat => treat.TreatId == id);
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      Console.WriteLine("hey, its1" + userId);
-      // Console.WriteLine("hey, its2" + thisTreat.User.Id);
-      ViewBag.IsCurrentUser = userId == thisTreat.User.Id;
+      Console.WriteLine("userId:" + userId);
+      Console.WriteLine("thisTreat's userId?:"+ thisTreat.User.Id);
+      ViewBag.IsCurrentUser = userId;
+      ViewBag.IsCurrentUser = userId != null ? userId == thisTreat.User.Id : false;
       return View(thisTreat);
     }
 
